@@ -15,6 +15,7 @@ export default function App() {
         >
           Olga
         </a>
+
         and is
         <a
           href="https://github.com/SheillaO/weather-forecast-react-app"
@@ -23,6 +24,7 @@ export default function App() {
         >
           open-sourced on GitHub
         </a>
+        
         and
         <a
           href="https://weather-forecast-react-app-dashboard.netlify.app/"
