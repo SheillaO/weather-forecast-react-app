@@ -12,6 +12,16 @@ export default function WeatherForecast(props) {
   }, [props.coordinates]);
 
   function handleResponse(response) {
+    let dailyForecast = [];
+    let forecastData = response.data.list;
+
+    for (let i = 0; i < forecastData.length; i++) {
+      let dateTime = forecastData[i].dt_txt;
+      if (dateTime.includes("12:00:00")) {
+        dailyForecast.push(forecastData[i]);
+      }
+    }
+
     setForecast(response.data.list);
     setLoaded(true);
   }
