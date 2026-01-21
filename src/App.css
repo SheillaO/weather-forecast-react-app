@@ -1,9 +1,20 @@
 .App{
      max-width: 600px;
      margin: 30px auto;
+     padding: 0 20px;
 }
 
 .App footer{
     font-size: 11px;
     margin: 10px 0;
+    text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+body {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
