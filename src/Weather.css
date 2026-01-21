@@ -1,20 +1,19 @@
 .Weather {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   padding: 40px;
   border-radius: 24px;
   color: #4a5568;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 
-              0 0 0 1px rgba(255, 255, 255, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
 }
 
 .Weather:hover {
   transform: translateY(-2px);
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35),
-              0 0 0 1px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
 }
+
 
 /* Search Form Styling */
 .Weather form {
@@ -57,7 +56,7 @@
   transform: translateY(0);
 }
 
-/* Weather Info Section */
+
 .WeatherInfo h1 {
   font-size: 36px;
   font-weight: 700;
@@ -114,7 +113,11 @@
 }
 
 .WeatherInfo .col-6:last-child ul {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(102, 126, 234, 0.08) 0%,
+    rgba(118, 75, 162, 0.08) 100%
+  );
   padding: 20px 28px;
   border-radius: 16px;
   border: 1px solid rgba(102, 126, 234, 0.15);
@@ -132,16 +135,6 @@
   justify-content: space-between;
 }
 
-.WeatherInfo .col-6:last-child li::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 50%;
-  margin-right: 12px;
-}
-
-/* Temperature Display */
 .WeatherTemperature {
   display: flex;
   align-items: flex-start;
