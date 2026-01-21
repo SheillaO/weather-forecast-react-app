@@ -1,20 +1,62 @@
-.App{
-     max-width: 600px;
-     margin: 30px auto;
-     padding: 0 20px;
-}
-
-.App footer{
-    font-size: 11px;
-    margin: 10px 0;
-    text-align: center;
-  color: rgba(255, 255, 255, 0.6);
-  font-weight: 300;
-  letter-spacing: 0.5px;
-}
-
 body {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100vh;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px 0;
+}
+
+.App {
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.App h1 {
+  color: white;
+  text-align: center;
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  letter-spacing: -1px;
+}
+
+.App footer {
+  font-size: 12px;
+  margin-top: 24px;
+  text-align: center;
+  color: rgba(45, 55, 72, 0.7);
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  line-height: 1.6;
+  padding: 20px 0 0 0;
+  border-top: 1px solid rgba(102, 126, 234, 0.15);
+}
+
+.App footer a {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.App footer a:hover {
+  color: #764ba2;
+  text-decoration: none;
+}
+
+.App footer a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  transition: width 0.3s ease;
+}
+
+.App footer a:hover::after {
+  width: 100%;
 }
