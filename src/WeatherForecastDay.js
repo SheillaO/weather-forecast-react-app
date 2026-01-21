@@ -3,12 +3,12 @@ import WeatherIcon from "./WeatherIcon";
 
 export default function WeatherForecastDay(props) {
   function maxTemperature() {
-    let temperature = Math.round(props.data.main.temp.max);
+    let temperature = Math.round(props.data.temp.max);
     return `${temperature}°`;
   }
 
   function minTemperature() {
-    let temperature = Math.round(props.data.main.temp.min);
+    let temperature = Math.round(props.data.temp.min);
     return `${temperature}°`;
   }
 
