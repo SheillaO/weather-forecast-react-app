@@ -6,6 +6,7 @@ import axios from "axios";
 export default function Weather(props) {
   const [weatherData, setweatherData] = useState({ ready: false });
   const [city, setCity] = useState(props.defaultCity);
+  const [hasSearched, setHasSearched] = useState(false);
 
   function handleResponse(response) {
     console.log(response.data);
@@ -24,8 +25,18 @@ export default function Weather(props) {
 
   function search() {
     const apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
-    let apiUrl = `https://ap.penweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(handleResponse);
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios
+      .get(apiUrl)
+      .then(handleResponse)
+      .catch(function (error) {
+        console.log("Error details:", error);
+        console.log("Error response:", error.response);
+        console.log("Error message:", error.message);
+        alert(
+          "Error loading weather data. Please check the city name and try again.",
+        );
+      });
   }
 
   function handleSubmit(event) {
@@ -64,7 +75,10 @@ export default function Weather(props) {
       </div>
     );
   } else {
-    search();
+    if (!hasSearched) {
+      setHasSearched(true);
+      search();
+    }
     return "Loading ...";
   }
 }
