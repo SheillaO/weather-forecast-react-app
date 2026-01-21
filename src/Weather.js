@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import WeatherInfo from "./WeatherInfo";
-import "./Weather.css";
 import axios from "axios";
+import "./Weather.css";
 
 export default function Weather(props) {
-  const [weatherData, setweatherData] = useState({ ready: false });
+  const [weatherData, setWeatherData] = useState({ ready: false });
   const [city, setCity] = useState(props.defaultCity);
-  const [hasSearched, setHasSearched] = useState(false);
 
   function handleResponse(response) {
-    console.log(response.data);
-    setweatherData({
+    setWeatherData({
       ready: true,
       coordinates: response.data.coord,
       temperature: response.data.main.temp,
@@ -23,22 +21,6 @@ export default function Weather(props) {
     });
   }
 
-  function search() {
-    const apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    axios
-      .get(apiUrl)
-      .then(handleResponse)
-      .catch(function (error) {
-        console.log("Error details:", error);
-        console.log("Error response:", error.response);
-        console.log("Error message:", error.message);
-        alert(
-          "Error loading weather data. Please check the city name and try again.",
-        );
-      });
-  }
-
   function handleSubmit(event) {
     event.preventDefault();
     search();
@@ -46,6 +28,12 @@ export default function Weather(props) {
 
   function handleCityChange(event) {
     setCity(event.target.value);
+  }
+
+  function search() {
+    const apiKey = "6bfa54f242cbb59343d4e58db578dc61";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
   }
 
   if (weatherData.ready) {
@@ -56,7 +44,7 @@ export default function Weather(props) {
             <div className="col-9">
               <input
                 type="search"
-                placeholder="Enter a city .."
+                placeholder="Enter a city.."
                 className="form-control"
                 autoFocus="on"
                 onChange={handleCityChange}
@@ -72,13 +60,11 @@ export default function Weather(props) {
           </div>
         </form>
         <WeatherInfo data={weatherData} />
+       
       </div>
     );
   } else {
-    if (!hasSearched) {
-      setHasSearched(true);
-      search();
-    }
-    return "Loading ...";
+    search();
+    return "Loading...";
   }
 }
