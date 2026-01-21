@@ -1,7 +1,35 @@
-import React from "react";
+import React, {useState} from "react";
 import "./Weather.css";
+import axios from "axios";
 
-export default function Weather() {
+export default function Weather(props) {
+const [weatherData, setweatherData] = useState({ ready: false});
+const [city, setCity] = useState(props.defaultCity);
+
+
+function handleResponse(response){
+    console.log(response.data);
+    setweatherData({
+      ready: true,
+      coordinates: response.data.coord,
+      temperature: response.data.main.temp,
+      humidity: response.data.main.humidity,
+      date: new Date(response.data.dt * 1000),
+      description: response.data.weather[0].description,
+      icon: response.data.weather[0].icon,
+      wind: response.data.wind.speed,
+      city: response.data.name,
+    });
+}
+
+function search() {
+    const apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
+    let apiUrl = `https://ap.penweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
+}
+
+if (weatherData.ready){
+
   return (
     <div className="Weather">
       <form>
@@ -23,31 +51,31 @@ export default function Weather() {
           </div>
         </div>
       </form>
-      <h1>New York</h1>
+      <h1>{weatherData.city}</h1>
       <ul>
-        <li>Wednesday 07:00</li>
-        <li>Mostly Cloudy</li>
+        <li>{weatherData.date}</li>
+        <li className="text-capitalize">{weatherData.description}</li>
       </ul>
       <div className="row mt-3">
         <div className="col-6">
           <img
-            src="https://www.gstatic.com/weather/conditions/v1/svg/mostly_cloudy_day_light.svg"
-            alt="Mostly cloudy"
+            src={weatherData.iconurl}
+            alt={weatherData.description}
             className="float-left"
           />
           <div className="float-left">
-            <span className="temperature">24</span>
+            <span className="temperature">{Math.round(temperature)}</span>
             <span className="unit">°C</span>
           </div>
         </div>
         <div className="col-6">
           <ul>
-            <li>Precipitation: 10% </li>
-            <li>Humidity: 44% </li>
-            <li>Wind: 21 km/h</li>
+            <li>Humidity:{weatherData.humidity}%</li>
+            <li>Wind:{weatherData.wind}km/h</li>
           </ul>
         </div>
       </div>
     </div>
   );
 }
+    }
